@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:test_flutter/screen1.dart';
-import 'package:test_flutter/screen2.dart';
+
+import 'package:google_fonts/google_fonts.dart';
+import 'package:test_flutter/data/dummy_data.dart';
+import 'package:test_flutter/screens/meal.dart';
+
+final theme = ThemeData(
+  useMaterial3: true,
+  colorScheme: ColorScheme.fromSeed(
+    brightness: Brightness.dark,
+    seedColor: const Color.fromARGB(255, 131, 57, 0),
+  ),
+  textTheme: GoogleFonts.latoTextTheme(),
+);
 
 void main() {
-  runApp(const MyApp());
+  runApp(const App());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: {
-        "/": (context) => Screen1(),
-        "/Screen2": (context) => Screen2(),
-      },
+      theme: theme,
+      home: const MealsScreen(
+        title: 'Some category...',
+        meals: dummyMeals,
+      ),
     );
   }
 }
